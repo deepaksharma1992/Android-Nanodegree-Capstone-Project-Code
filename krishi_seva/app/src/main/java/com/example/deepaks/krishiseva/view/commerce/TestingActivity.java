@@ -38,6 +38,8 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 public class TestingActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
+
+    
     Location mLocation;
     TextView latLng;
     GoogleApiClient mGoogleApiClient;
