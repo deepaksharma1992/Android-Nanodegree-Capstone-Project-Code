@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_bank_back"
+            android:layout_width="@dimen/electricity_icon_back_param"
+            android:layout_height="@dimen/electricity_icon_back_param"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/oval_drawable">
+
+            <ImageView
+                android:layout_width="@dimen/elec_icon_param"
+                android:layout_height="@dimen/elec_icon_param"
+                android:layout_centerInParent="true"
+                android:background="@mipmap/bank_icon"
+                android:contentDescription="@string/electricity_label" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_toEndOf="@id/rl_bank_back"
+            android:layout_toRightOf="@+id/rl_bank_back"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold"
+                tools:text="Lucknow, UP" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_bank_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="Private Bank" />
+
+                <RatingBar
+                    android:id="@+id/rb_bank_rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:theme="@style/RatingBar" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_interest_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_accent_background"
+                    android:padding="@dimen/_5dp"
+                    android:textColor="@color/white"
+                    tools:text="10% interest rate" />
+
+                <TextView
+                    android:id="@+id/tv_phone_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:autoLink="phone"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textColorLink="@color/color_blue_gray_500"
+                    android:textSize="@dimen/phone_text_size"
+                    tools:text="9910854213" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

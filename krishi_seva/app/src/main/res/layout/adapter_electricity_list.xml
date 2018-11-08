@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_electricity_back"
+            android:layout_width="@dimen/electricity_icon_back_param"
+            android:layout_height="@dimen/electricity_icon_back_param"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/oval_drawable">
+
+            <ImageView
+                android:layout_width="@dimen/elec_icon_param"
+                android:layout_height="@dimen/elec_icon_param"
+                android:layout_centerInParent="true"
+                android:background="@mipmap/electricity_icon"
+                android:contentDescription="@string/electricity_label" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginLeft="@dimen/_10dp"
+            android:layout_toEndOf="@id/rl_electricity_back"
+            android:layout_toRightOf="@+id/rl_electricity_back"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:id="@+id/tv_place"
+                android:maxLines="1"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold"
+                tools:text="Lucknow, UP" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_accent_background"
+                    android:padding="@dimen/_5dp
+
+"
+                    android:textColor="@color/white"
+                    tools:text="23-oct-2018" />
+
+                <TextView
+                    android:id="@+id/tv_from_to_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    tools:text="12:00 AM to  3.00PM" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

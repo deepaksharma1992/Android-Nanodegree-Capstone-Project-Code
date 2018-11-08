@@ -1,0 +1,20 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="splash_logo_dimen">100dp</dimen>
+    <dimen name="medium_text_size">20sp</dimen>
+    <dimen name="login_logo_top_margin">20dp</dimen>
+    <dimen name="button_height">45dp</dimen>
+    <dimen name="rounded_corner_radius">25dp</dimen>
+    <dimen name="radio_extra_text_size">18sp</dimen>
+    <dimen name="button_text_size">18sp</dimen>
+    <dimen name="_10dp">10dp</dimen>
+    <dimen name="_5dp">5dp</dimen>
+    <dimen name="electricity_icon_back_param">50dp</dimen>
+    <dimen name="elec_icon_param">25dp</dimen>
+    <dimen name="phone_text_size">17sp</dimen>
+    <dimen name="news_image_height">150dp</dimen>
+    <dimen name="location_param">30dp</dimen>
+
+</resources>

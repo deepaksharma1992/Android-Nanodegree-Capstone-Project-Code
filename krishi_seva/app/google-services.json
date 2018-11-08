@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "135103025673",
+    "firebase_url": "https://krishi-seva-37b92.firebaseio.com",
+    "project_id": "krishi-seva-37b92",
+    "storage_bucket": "krishi-seva-37b92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135103025673:android:4b16e4a11329c76a",
+        "android_client_info": {
+          "package_name": "com.example.deepaks.krishiseva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135103025673-1m783hdispcr1ubkkslp3u1j64kj1hco.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.deepaks.krishiseva",
+            "certificate_hash": "c6450e89ab38f8a2a9328f7a660e892bbe8bd9d1"
+          }
+        },
+        {
+          "client_id": "135103025673-qftn7186dghli070jljrkf6b14l3bf6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXRpBmXT2Qv9eYoeBcGLjNqaffs2XqEQA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "135103025673-qftn7186dghli070jljrkf6b14l3bf6i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
