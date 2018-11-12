@@ -8,7 +8,7 @@
     <string name="login_label">Login</string>
     <string name="are_you_label">Are you?</string>
     <string name="farmer_label">Farmer</string>
-    <string name="vendor_label">Vendor</string>
+    <string name="vendor_label">Vendors</string>
     <string name="remember_me_label">Remember me</string>
     <string name="no_account">Don\'t have an account?</string>
     <string name="sign_up_label">Sign Up</string>
@@ -27,7 +27,7 @@
     <string name="no_electricity_message">No data for power cut available for now. Come back later to get the latest.</string>
     <string name="no_bank_message">No data for banks available for now. Come back later to get the latest data.</string>
     <string name="electricity_label">Electricity</string>
-    <string name="bank_label">Bank</string>
+    <string name="bank_label">Banks</string>
     <string name="from_label">From</string>
     <string name="govt_bank_label">Government Bank</string>
     <string name="private_bank_label">Private Bank</string>
@@ -36,4 +36,19 @@
     <string name="no_news_message">No news data avialable for now. Try after some time to see the latest news.</string>
     <string name="news_label">News</string>
     <string name="enter_or_select_location_label">Enter or select location</string>
+    <string name="ok_label">Ok</string>
+    <string name="cancel_label">Cancel</string>
+    <string name="permission_message">These permissions are mandatory for the application. Please allow access.</string>
+    <string name="enable_permission_label">Enable Permissions</string>
+    <string name="login_signup_label">Login/Sign Up</string>
+    <string name="welcome_message">Welcome to Krishi Seva.\n Login now to see all the vendors and contact them directly to get best price for your yields.</string>
+    <string name="power_cut_label">Power Cut</string>
+    <string name="call_label">Call</string>
+    <string name="best_price_label">Avg Rate:</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="loading_message">Loading please wait...</string>
+    <string name="user_already_exist">User with same email already exist. Please log in with the email.</string>
+    <string name="no_user">There is no user with this email. Check your credential or sign up.</string>
+    <string name="wrong_password">Wrong password</string>
 </resources>

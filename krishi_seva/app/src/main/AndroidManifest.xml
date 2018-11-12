@@ -14,40 +14,47 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.dashboard.activity.DashboardActivity"
-            android:label="@string/app_name"
+            android:name=".view.splash.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
-            <!--
-               <intent-filter>
-                   <action android:name="android.intent.action.MAIN" />
-
-                   <category android:name="android.intent.category.LAUNCHER" />
-               </intent-filter>
-            -->
-        </activity>
-        <!-- <activity android:name=".view.dashboard.activity.DashboardActivity" /> -->
-        <activity
-            android:name=".view.login.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.signup.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.commerce.CommerceActivity">
-          <!--  <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-        <activity android:name=".view.commerce.TestingActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.dashboard.activity.DashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity
+            android:name=".view.login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.signup.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".view.commerce.CommerceActivity" />
+
+        <activity android:name=".view.commerce.TestingActivity" />
+
+        <service
+            android:name=".service.NewsService"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBB7Zg_IfzTM18hzF1WfOSMaKHYqrvcSKs" />
+
+        <receiver android:name=".widget.ElectricityStatusWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/electricity_status_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

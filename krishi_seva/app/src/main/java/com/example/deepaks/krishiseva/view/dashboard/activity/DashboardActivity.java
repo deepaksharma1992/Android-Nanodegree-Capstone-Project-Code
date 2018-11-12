@@ -13,6 +13,8 @@ import com.example.deepaks.krishiseva.view.BaseActivity;
 import com.example.deepaks.krishiseva.view.dashboard.fragment.BanksFragment;
 import com.example.deepaks.krishiseva.view.dashboard.fragment.ElectricityFragment;
 import com.example.deepaks.krishiseva.view.dashboard.fragment.NewsFragment;
+import com.example.deepaks.krishiseva.view.dashboard.fragment.VendorsFragment;
+import com.example.deepaks.krishiseva.view.dashboard.fragment.WelcomeFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +25,7 @@ public class DashboardActivity extends BaseActivity {
     Toolbar mToolbar;
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
+    boolean isLogin;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,6 +34,16 @@ public class DashboardActivity extends BaseActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
             switch (item.getItemId()) {
+                case R.id.navigation_welcome:
+                    setTitle(R.string.title_dashboard);
+                    fragment = new WelcomeFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.navigation_vendors:
+                    setTitle(R.string.vendor_label);
+                    fragment = new VendorsFragment();
+                    loadFragment(fragment);
+                    return true;
                 case R.id.navigation_banks:
                     setTitle(R.string.bank_label);
                     fragment = new BanksFragment();
@@ -38,7 +51,7 @@ public class DashboardActivity extends BaseActivity {
                     return true;
                 case R.id.navigation_electricity:
                     fragment = new ElectricityFragment();
-                    setTitle(R.string.electricity_label);
+                    setTitle(R.string.power_cut_label);
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_news:
@@ -68,9 +81,18 @@ public class DashboardActivity extends BaseActivity {
     protected void setUpActivityComponents() {
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation
+                .setOnNavigationItemSelectedListener(
+                        mOnNavigationItemSelectedListener);
         navigation.inflateMenu(R.menu.navigation);
-        loadFragment(new ElectricityFragment());
+
+        if (isLogin) {
+            navigation.getMenu().removeItem(R.id.navigation_welcome);
+            loadFragment(new VendorsFragment());
+        } else {
+            navigation.getMenu().removeItem(R.id.navigation_vendors);
+            loadFragment(new WelcomeFragment());
+        }
     }
 
     private void loadFragment(Fragment fragment) {

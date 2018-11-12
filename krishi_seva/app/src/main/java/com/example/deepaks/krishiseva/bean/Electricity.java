@@ -1,5 +1,6 @@
 package com.example.deepaks.krishiseva.bean;
 
+import com.example.deepaks.krishiseva.util.GlobalConstant;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
@@ -33,6 +34,15 @@ public class Electricity {
 
     public String getCutOfRegion() {
         return cutOfRegion;
+    }
+
+    @Override
+    public String toString() {
+        return (id + 1) + GlobalConstant.SPACE_1
+                + cutOfRegion
+                + GlobalConstant.COMMA
+                + GlobalConstant.SPACE_1
+                + cutOffTime;
     }
 }
 

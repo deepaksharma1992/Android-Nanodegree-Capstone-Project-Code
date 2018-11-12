@@ -83,7 +83,9 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.MyViewHolder> 
                 + GlobalConstant.SPACE_1
                 + mContext.getString(R.string.intrest_rate_label)
         );
-        holder.mPhoneText.setText("Call "+bankData.getPhoneNumber());
+        holder.mPhoneText.setText(mContext.getString(R.string.call_label)
+                + GlobalConstant.SPACE_1
+                + bankData.getPhoneNumber());
 
         ColorUtils.setDrawableColor(mContext, holder.mBankBackground);
 

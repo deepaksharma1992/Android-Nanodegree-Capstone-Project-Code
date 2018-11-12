@@ -4,28 +4,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
-import android.widget.RadioButton;
 
 import com.example.deepaks.krishiseva.R;
+import com.example.deepaks.krishiseva.bean.User;
+import com.example.deepaks.krishiseva.util.DatabaseUserUtils;
+import com.example.deepaks.krishiseva.util.GlobalConstant;
 import com.example.deepaks.krishiseva.util.GlobalUtils;
 import com.example.deepaks.krishiseva.util.MessageUtils;
+import com.example.deepaks.krishiseva.util.SignUpListener;
 import com.example.deepaks.krishiseva.view.BaseActivity;
 import com.example.deepaks.krishiseva.view.signup.SignUpActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements SignUpListener {
 
     @BindView(R.id.et_email)
     EditText mEmailEt;
     @BindView(R.id.et_password)
     EditText mPasswordEt;
-    @BindView(R.id.rb_farmer)
-    RadioButton mFarmerRb;
-    @BindView(R.id.rb_vendor)
-    RadioButton mVendorRb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +55,10 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.rb_vendor)
-    void vendorSelected() {
-    }
-
-    @OnClick(R.id.rb_farmer)
-    void farmerSelected() {
-    }
-
     @OnClick(R.id.btn_login)
     void loginClicked() {
         if (validateCredential()) {
-
+            DatabaseUserUtils.getAllUserList(this);
         }
     }
 
@@ -94,5 +88,28 @@ public class LoginActivity extends BaseActivity {
         Intent signUpIntent = new Intent(this, SignUpActivity.class);
         startActivity(signUpIntent);
         moveHead(this);
+    }
+
+    @Override
+    public void getAllUsers(List<User> userList) {
+        boolean isValidUser = false;
+        for (User user : userList) {
+            if (user.getEmail().equalsIgnoreCase(mEmailEt.getEditableText().toString().trim())) {
+                if (user.getPassword().equals(mPasswordEt.getEditableText().toString().trim())) {
+                    // logged in successfully
+                    isValidUser = true;
+                } else {
+                    isValidUser = true;
+                    mPasswordEt.setText(GlobalConstant.BLANK);
+                    MessageUtils.showToastMessage(this, getString(R.string.wrong_password));
+                }
+            }
+        }
+
+        if (!isValidUser) {
+            mEmailEt.setText(GlobalConstant.BLANK);
+            mPasswordEt.setText(GlobalConstant.BLANK);
+            MessageUtils.showToastMessage(this, getString(R.string.no_user));
+        }
     }
 }

@@ -1,27 +1,24 @@
 package com.example.deepaks.krishiseva.view.signup;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.EditText;
 
 import com.example.deepaks.krishiseva.R;
-import com.example.deepaks.krishiseva.bean.Electricity;
+import com.example.deepaks.krishiseva.bean.User;
+import com.example.deepaks.krishiseva.util.DatabaseUserUtils;
 import com.example.deepaks.krishiseva.util.GlobalUtils;
 import com.example.deepaks.krishiseva.util.MessageUtils;
+import com.example.deepaks.krishiseva.util.SignUpListener;
 import com.example.deepaks.krishiseva.view.BaseActivity;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SignUpActivity extends BaseActivity {
+public class SignUpActivity extends BaseActivity implements SignUpListener {
 
     @BindView(R.id.et_username)
     EditText mUsernameEt;
@@ -34,34 +31,33 @@ public class SignUpActivity extends BaseActivity {
     @BindView(R.id.et_phone)
     EditText mPhoneEt;
 
-    private DatabaseReference mDatabase;
+    @Override
+    public void getAllUsers(List<User> userList) {
+        boolean isExist = false;
+        for (User user : userList) {
+            if (user.getEmail().equalsIgnoreCase(mEmailEt.getEditableText().toString())) {
+                isExist = true;
+                break;
+            }
+        }
+        if (!isExist) {
+            DatabaseUserUtils.insertUser(new User(mUsernameEt.getEditableText().toString().trim()
+                    , mEmailEt.getEditableText().toString().trim()
+                    , mPasswordEt.getEditableText().toString().trim()
+                    , mPhoneEt.getEditableText().toString().trim()
+                    , ""));
+            finish();
+        } else {
+            MessageUtils.showToastMessage(this, getString(R.string.user_already_exist));
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getResourceLayout());
         setUpActivityComponents();
-
-        getElectricityData();
-    }
-
-
-    private void getElectricityData() {
-        mDatabase = FirebaseDatabase.getInstance().getReference("electricity");
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Electricity post = postSnapshot.getValue(Electricity.class);
-                    Log.e("Get Data", post.getCutOffDate());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
     @Override
@@ -74,19 +70,10 @@ public class SignUpActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.rb_farmer)
-    void farmerSelected() {
-    }
-
-    @OnClick(R.id.rb_vendor)
-    void vendorSelected() {
-
-    }
-
     @OnClick(R.id.btn_sign_up)
     void signUpSelected() {
         if (validateSignUp()) {
-
+            DatabaseUserUtils.getAllUserList(this);
         }
     }
 
@@ -128,6 +115,6 @@ public class SignUpActivity extends BaseActivity {
 
     @OnClick(R.id.tv_login)
     void loginClicked() {
-
+        finish();
     }
 }

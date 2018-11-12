@@ -1,8 +1,10 @@
 package com.example.deepaks.krishiseva.view.dashboard.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,9 +22,8 @@ import com.example.deepaks.krishiseva.R;
 import com.example.deepaks.krishiseva.adapter.NewsAdapter;
 import com.example.deepaks.krishiseva.bean.Article;
 import com.example.deepaks.krishiseva.network.NetworkConnection;
-import com.example.deepaks.krishiseva.network.NewsResponseData;
+import com.example.deepaks.krishiseva.service.NewsService;
 
-import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -55,8 +56,33 @@ public class NewsFragment extends Fragment implements NewsAdapter.OnItemClickLis
 
     private void setUpFragmentComponent(View view) {
         ButterKnife.bind(this, view);
+    }
+
+    @Override
+    public void onClickItemListener(String newsUrl) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
+        startActivity(browserIntent);
+    }
+
+    public BroadcastReceiver mNewsDataBroadcast = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mLoadingProgress.setVisibility(View.GONE);
+            List<Article> articleList =
+                    intent.getParcelableArrayListExtra(NewsService.NEWS_DATA_EXTRA);
+            setUpAdapter(articleList);
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().registerReceiver(mNewsDataBroadcast
+                , new IntentFilter(NewsService.NEWS_BROADCAST_ACTION));
+        mLoadingProgress.setVisibility(View.VISIBLE);
+
         if (NetworkConnection.isNetworkConnected(getActivity())) {
-            new DownloadNewsTask().execute();
+            NewsService.startNewsService(getActivity(), NewsService.NEWS_SEVICE_ACTION);
         } else {
             mNewsRv.setVisibility(View.GONE);
             mLoadingProgress.setVisibility(View.INVISIBLE);
@@ -66,40 +92,8 @@ public class NewsFragment extends Fragment implements NewsAdapter.OnItemClickLis
     }
 
     @Override
-    public void onClickItemListener(String newsUrl) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(newsUrl));
-        startActivity(browserIntent);
-    }
-
-    private class DownloadNewsTask extends AsyncTask<Void, List<Article>, List<Article>> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mLoadingProgress.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected List<Article> doInBackground(Void... lists) {
-            List<Article> bookList = null;
-            try {
-                String responseString = NetworkConnection.getResponseFromHttpUrl(NetworkConnection.buildUrl());
-                bookList = NewsResponseData.getArticleData(responseString);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return bookList;
-        }
-
-        @Override
-        protected void onPostExecute(List<Article> articles) {
-            super.onPostExecute(articles);
-            mLoadingProgress.setVisibility(View.INVISIBLE);
-            if (articles != null && articles.size() > 0) {
-                setUpAdapter(articles);
-            } else {
-                mNoNewsText.setText(getString(R.string.no_news_message));
-            }
-        }
+    public void onPause() {
+        super.onPause();
+        getActivity().unregisterReceiver(mNewsDataBroadcast);
     }
 }

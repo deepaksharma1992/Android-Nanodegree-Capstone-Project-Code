@@ -2,6 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/navigation_vendors"
+        android:icon="@mipmap/farmer_icon"
+        android:title="@string/title_home" />
+    <item
+        android:id="@+id/navigation_welcome"
+        android:icon="@mipmap/money_icon"
+        android:title="@string/title_home" />
+    <item
         android:id="@+id/navigation_electricity"
         android:icon="@mipmap/electricity_icon"
         android:title="@string/electricity_label" />

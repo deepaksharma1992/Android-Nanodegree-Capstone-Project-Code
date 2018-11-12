@@ -2,12 +2,14 @@ package com.example.deepaks.krishiseva.view.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.example.deepaks.krishiseva.R;
 import com.example.deepaks.krishiseva.view.BaseActivity;
-import com.example.deepaks.krishiseva.view.login.LoginActivity;
+import com.example.deepaks.krishiseva.view.dashboard.activity.DashboardActivity;
 
 public class SplashActivity extends BaseActivity {
+    private static int SPLASH_TIME_OUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,14 @@ public class SplashActivity extends BaseActivity {
      */
     @Override
     protected void setUpActivityComponents() {
-        startDashBoardActivity();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startDashBoardActivity();
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
     }
 
     /**
@@ -42,11 +51,9 @@ public class SplashActivity extends BaseActivity {
      * @description method to start the dashboard activity
      */
     private void startDashBoardActivity() {
-        Intent dashboardIntent = new Intent(this, LoginActivity.class);
+        Intent dashboardIntent = new Intent(this, DashboardActivity.class);
         startActivity(dashboardIntent);
         moveHead(this);
-
-
     }
 
 
