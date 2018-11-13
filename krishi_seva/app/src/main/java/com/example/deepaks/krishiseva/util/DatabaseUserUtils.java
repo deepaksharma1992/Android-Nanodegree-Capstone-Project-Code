@@ -35,6 +35,7 @@ public class DatabaseUserUtils {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                signUpListener.getAllUsers(userList);
             }
         });
     }

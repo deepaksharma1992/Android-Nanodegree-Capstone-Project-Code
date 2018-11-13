@@ -7,6 +7,7 @@ import android.widget.EditText;
 import com.example.deepaks.krishiseva.R;
 import com.example.deepaks.krishiseva.bean.User;
 import com.example.deepaks.krishiseva.util.DatabaseUserUtils;
+import com.example.deepaks.krishiseva.util.DialogUtils;
 import com.example.deepaks.krishiseva.util.GlobalUtils;
 import com.example.deepaks.krishiseva.util.MessageUtils;
 import com.example.deepaks.krishiseva.util.SignUpListener;
@@ -47,9 +48,12 @@ public class SignUpActivity extends BaseActivity implements SignUpListener {
                     , mPhoneEt.getEditableText().toString().trim()
                     , ""));
             finish();
+            MessageUtils.showToastMessage(this, getString(R.string.sign_up_success_message));
         } else {
             MessageUtils.showToastMessage(this, getString(R.string.user_already_exist));
         }
+
+        DialogUtils.dismissProgressDialog();
     }
 
 
@@ -73,6 +77,7 @@ public class SignUpActivity extends BaseActivity implements SignUpListener {
     @OnClick(R.id.btn_sign_up)
     void signUpSelected() {
         if (validateSignUp()) {
+            DialogUtils.showProgressDialog(this, getString(R.string.loading_message));
             DatabaseUserUtils.getAllUserList(this);
         }
     }

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import com.example.deepaks.krishiseva.R;
 import com.example.deepaks.krishiseva.bean.User;
 import com.example.deepaks.krishiseva.util.DatabaseUserUtils;
+import com.example.deepaks.krishiseva.util.DialogUtils;
 import com.example.deepaks.krishiseva.util.GlobalConstant;
 import com.example.deepaks.krishiseva.util.GlobalUtils;
 import com.example.deepaks.krishiseva.util.MessageUtils;
@@ -58,6 +59,7 @@ public class LoginActivity extends BaseActivity implements SignUpListener {
     @OnClick(R.id.btn_login)
     void loginClicked() {
         if (validateCredential()) {
+            DialogUtils.showProgressDialog(this, getString(R.string.loading_message));
             DatabaseUserUtils.getAllUserList(this);
         }
     }
@@ -92,6 +94,7 @@ public class LoginActivity extends BaseActivity implements SignUpListener {
 
     @Override
     public void getAllUsers(List<User> userList) {
+        DialogUtils.dismissProgressDialog();
         boolean isValidUser = false;
         for (User user : userList) {
             if (user.getEmail().equalsIgnoreCase(mEmailEt.getEditableText().toString().trim())) {

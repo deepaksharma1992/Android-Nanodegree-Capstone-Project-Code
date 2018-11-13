@@ -51,4 +51,5 @@
     <string name="user_already_exist">User with same email already exist. Please log in with the email.</string>
     <string name="no_user">There is no user with this email. Check your credential or sign up.</string>
     <string name="wrong_password">Wrong password</string>
+    <string name="sign_up_success_message">Signed up successfully. Please login with your credentials</string>
 </resources>

@@ -15,7 +15,7 @@ public class MessageUtils {
     public static void showToastMessage(Context context, String message) {
         if (mToastObject != null)
             mToastObject.cancel();
-        mToastObject = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        mToastObject = Toast.makeText(context, message, Toast.LENGTH_LONG);
         mToastObject.show();
     }
 }
