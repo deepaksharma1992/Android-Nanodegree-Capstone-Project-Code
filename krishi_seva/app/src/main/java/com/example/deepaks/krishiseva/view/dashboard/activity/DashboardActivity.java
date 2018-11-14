@@ -73,11 +73,11 @@ public class DashboardActivity extends AppCompatActivity {
         setUpActivityComponents();
     }
 
-    protected int getResourceLayout() {
+    private int getResourceLayout() {
         return R.layout.activity_dashboard;
     }
 
-    protected void setUpActivityComponents() {
+    private void setUpActivityComponents() {
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
         navigation

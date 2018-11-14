@@ -26,15 +26,13 @@
         <activity
             android:name=".view.dashboard.activity.DashboardActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        </activity>
 
         <activity
             android:name=".view.login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".view.signup.SignUpActivity"
             android:screenOrientation="portrait"

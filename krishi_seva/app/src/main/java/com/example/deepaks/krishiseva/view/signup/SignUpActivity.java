@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpListener,
     @BindView(R.id.tv_location_address)
     TextView mLocationAddressText;
 
-    private String mLocationString = null;
+    private String mLocationString;
     private PlaceAutocompleteFragment placeAutocompleteFragment;
 
     private GoogleApiClient mGoogleApiClient;
@@ -221,7 +221,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpListener,
     }
 
     private ArrayList<String> findUnAskedPermissions(ArrayList<String> wanted) {
-        ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<String>();
 
         for (String perm : wanted) {
             if (!hasPermission(perm)) {
@@ -243,6 +243,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpListener,
             mLocationString = LocationUtils.getAddress(this, mLocation.getLatitude()
                     , mLocation.getLongitude());
             mLocationAddressText.setText(mLocationString);
+        } else {
+            MessageUtils.showToastMessage(this, getString(R.string.failed_to_detect_location));
         }
         startLocationUpdates();
     }
@@ -265,6 +267,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpListener,
             mLocationAddressText.setText(mLocationString = LocationUtils.getAddress(this
                     , mLocation.getLatitude()
                     , mLocation.getLongitude()));
+        } else {
+            MessageUtils.showToastMessage(this, getString(R.string.failed_to_detect_location));
         }
     }
 
@@ -374,15 +378,16 @@ public class SignUpActivity extends AppCompatActivity implements SignUpListener,
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mGoogleApiClient != null)
-            stopLocationUpdates();
+        stopLocationUpdates();
     }
 
     public void stopLocationUpdates() {
-        if (mGoogleApiClient.isConnected()) {
-            LocationServices.FusedLocationApi
-                    .removeLocationUpdates(mGoogleApiClient, this);
-            mGoogleApiClient.disconnect();
+        if (mGoogleApiClient != null) {
+            if (mGoogleApiClient.isConnected()) {
+                LocationServices.FusedLocationApi
+                        .removeLocationUpdates(mGoogleApiClient, this);
+                mGoogleApiClient.disconnect();
+            }
         }
     }
 }

@@ -14,8 +14,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
+    signingConfigs {
+        debug {
+            // haven't shared the password and credential here, due to security reasons
+            // please find them on the Credential.docs file
+            // attached on the master branch under "key store credential" folder
+        }
+    }
+
 }
 
 dependencies {

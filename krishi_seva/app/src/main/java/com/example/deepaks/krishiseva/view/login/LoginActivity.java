@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements SignUpListener {
      * @return the layout file for the activity
      * @author deepaks
      */
-    protected int getResourceLayout() {
+    private int getResourceLayout() {
         return R.layout.activity_login;
     }
 
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements SignUpListener {
      * @return setup the activity components for the activity
      * @author deepaks
      */
-    protected void setUpActivityComponents() {
+    private void setUpActivityComponents() {
         ButterKnife.bind(this);
     }
 

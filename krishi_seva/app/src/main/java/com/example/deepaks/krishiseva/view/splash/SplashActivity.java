@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
      * @author deepaks
      * @date 16 oct 2018
      */
-    protected int getResourceLayout() {
+    private int getResourceLayout() {
         return R.layout.activity_splash;
     }
 
@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
      * @author deepaks
      * @date 16 oct 2018
      */
-    protected void setUpActivityComponents() {
+    private void setUpActivityComponents() {
 
         new Handler().postDelayed(new Runnable() {
             @Override

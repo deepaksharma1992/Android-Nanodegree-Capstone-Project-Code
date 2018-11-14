@@ -55,4 +55,5 @@
     <string name="or_label">or</string>
     <string name="select_loction">Enter or select locaion before signup.</string>
     <string name="search_location">Search location</string>
+    <string name="failed_to_detect_location">Failed to detect location. Please try again</string>
 </resources>
