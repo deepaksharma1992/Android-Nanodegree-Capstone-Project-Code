@@ -2,6 +2,7 @@ package com.example.deepaks.krishiseva.view.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.EditText;
 
@@ -13,7 +14,7 @@ import com.example.deepaks.krishiseva.util.GlobalConstant;
 import com.example.deepaks.krishiseva.util.GlobalUtils;
 import com.example.deepaks.krishiseva.util.MessageUtils;
 import com.example.deepaks.krishiseva.util.SignUpListener;
-import com.example.deepaks.krishiseva.view.BaseActivity;
+import com.example.deepaks.krishiseva.view.dashboard.activity.DashboardActivity;
 import com.example.deepaks.krishiseva.view.signup.SignUpActivity;
 
 import java.util.List;
@@ -22,12 +23,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements SignUpListener {
+public class LoginActivity extends AppCompatActivity implements SignUpListener {
 
     @BindView(R.id.et_email)
     EditText mEmailEt;
     @BindView(R.id.et_password)
     EditText mPasswordEt;
+
+    public static final String LOGIN_BOOLEAN_EXTRA = "LOGIN_BOOLEAN_EXTRA";
 
 
     @Override
@@ -41,7 +44,6 @@ public class LoginActivity extends BaseActivity implements SignUpListener {
      * @return the layout file for the activity
      * @author deepaks
      */
-    @Override
     protected int getResourceLayout() {
         return R.layout.activity_login;
     }
@@ -50,7 +52,6 @@ public class LoginActivity extends BaseActivity implements SignUpListener {
      * @return setup the activity components for the activity
      * @author deepaks
      */
-    @Override
     protected void setUpActivityComponents() {
         ButterKnife.bind(this);
     }
@@ -89,7 +90,6 @@ public class LoginActivity extends BaseActivity implements SignUpListener {
     void signUpClicked() {
         Intent signUpIntent = new Intent(this, SignUpActivity.class);
         startActivity(signUpIntent);
-        moveHead(this);
     }
 
     @Override
@@ -101,6 +101,10 @@ public class LoginActivity extends BaseActivity implements SignUpListener {
                 if (user.getPassword().equals(mPasswordEt.getEditableText().toString().trim())) {
                     // logged in successfully
                     isValidUser = true;
+                    Intent intent = new Intent(this, DashboardActivity.class);
+                    intent.putExtra(LOGIN_BOOLEAN_EXTRA, true);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 } else {
                     isValidUser = true;
                     mPasswordEt.setText(GlobalConstant.BLANK);

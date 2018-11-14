@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.deepaks.krishiseva.R;
 import com.example.deepaks.krishiseva.adapter.VendorAdapter;
 import com.example.deepaks.krishiseva.bean.Vendor;
+import com.example.deepaks.krishiseva.util.DatabaseConstant;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,7 +54,7 @@ public class VendorsFragment extends Fragment {
 
     private void setUpFragmentComponents(View view) {
         ButterKnife.bind(this, view);
-        mDatabase = FirebaseDatabase.getInstance().getReference("vendors");
+        mDatabase = FirebaseDatabase.getInstance().getReference(DatabaseConstant.VENDOR_TAG);
         mVendorList = new ArrayList<>();
     }
 

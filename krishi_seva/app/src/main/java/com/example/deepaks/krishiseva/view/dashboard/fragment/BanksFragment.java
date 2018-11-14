@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.deepaks.krishiseva.R;
 import com.example.deepaks.krishiseva.adapter.BankAdapter;
 import com.example.deepaks.krishiseva.bean.Bank;
+import com.example.deepaks.krishiseva.util.DatabaseConstant;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,7 +53,7 @@ public class BanksFragment extends Fragment {
 
     private void setUpFragmentComponents(View view) {
         ButterKnife.bind(this, view);
-        mDatabase = FirebaseDatabase.getInstance().getReference("banks");
+        mDatabase = FirebaseDatabase.getInstance().getReference(DatabaseConstant.BANK_TAG);
         mBankList = new ArrayList<>();
     }
 

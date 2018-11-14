@@ -3,12 +3,12 @@ package com.example.deepaks.krishiseva.view.splash;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.deepaks.krishiseva.R;
-import com.example.deepaks.krishiseva.view.BaseActivity;
 import com.example.deepaks.krishiseva.view.dashboard.activity.DashboardActivity;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
 
     @Override
@@ -23,7 +23,6 @@ public class SplashActivity extends BaseActivity {
      * @author deepaks
      * @date 16 oct 2018
      */
-    @Override
     protected int getResourceLayout() {
         return R.layout.activity_splash;
     }
@@ -33,7 +32,6 @@ public class SplashActivity extends BaseActivity {
      * @author deepaks
      * @date 16 oct 2018
      */
-    @Override
     protected void setUpActivityComponents() {
 
         new Handler().postDelayed(new Runnable() {
@@ -53,7 +51,6 @@ public class SplashActivity extends BaseActivity {
     private void startDashBoardActivity() {
         Intent dashboardIntent = new Intent(this, DashboardActivity.class);
         startActivity(dashboardIntent);
-        moveHead(this);
     }
 
 

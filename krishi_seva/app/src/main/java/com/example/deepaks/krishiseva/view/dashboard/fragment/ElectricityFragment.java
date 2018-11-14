@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.deepaks.krishiseva.R;
 import com.example.deepaks.krishiseva.adapter.ElectricityAdapter;
 import com.example.deepaks.krishiseva.bean.Electricity;
+import com.example.deepaks.krishiseva.util.DatabaseConstant;
 import com.example.deepaks.krishiseva.util.PreferenceUtils;
 import com.example.deepaks.krishiseva.widget.ElectricityStatusWidget;
 import com.google.firebase.database.DataSnapshot;
@@ -101,7 +102,7 @@ public class ElectricityFragment extends Fragment {
 
     private void setUpFragmentComponent(View view) {
         ButterKnife.bind(this, view);
-        mDatabase = FirebaseDatabase.getInstance().getReference("electricity");
+        mDatabase = FirebaseDatabase.getInstance().getReference(DatabaseConstant.ELECTRICITY_TAG);
         mElectricityList = new ArrayList<>();
     }
 }

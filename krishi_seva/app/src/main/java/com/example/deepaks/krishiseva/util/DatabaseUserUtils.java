@@ -19,7 +19,7 @@ public class DatabaseUserUtils {
      * @author deepaks
      */
     public static void getAllUserList(final SignUpListener signUpListener) {
-        final DatabaseReference db = FirebaseDatabase.getInstance().getReference("user");
+        final DatabaseReference db = FirebaseDatabase.getInstance().getReference(DatabaseConstant.USER_TAG);
         final List<User> userList = new ArrayList<>();
         db.addValueEventListener(new ValueEventListener() {
             @Override
@@ -46,7 +46,7 @@ public class DatabaseUserUtils {
      * @description method to insert the user in firebase db
      */
     public static void insertUser(User user) {
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("user");
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference(DatabaseConstant.USER_TAG);
         String userId = db.push().getKey();
         db.child(userId).setValue(user);
     }

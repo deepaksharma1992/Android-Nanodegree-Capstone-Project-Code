@@ -5,21 +5,22 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.deepaks.krishiseva.R;
-import com.example.deepaks.krishiseva.view.BaseActivity;
 import com.example.deepaks.krishiseva.view.dashboard.fragment.BanksFragment;
 import com.example.deepaks.krishiseva.view.dashboard.fragment.ElectricityFragment;
 import com.example.deepaks.krishiseva.view.dashboard.fragment.NewsFragment;
 import com.example.deepaks.krishiseva.view.dashboard.fragment.VendorsFragment;
 import com.example.deepaks.krishiseva.view.dashboard.fragment.WelcomeFragment;
+import com.example.deepaks.krishiseva.view.login.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DashboardActivity extends BaseActivity {
+public class DashboardActivity extends AppCompatActivity {
 
     @BindView(R.id.my_toolbar)
     Toolbar mToolbar;
@@ -72,12 +73,10 @@ public class DashboardActivity extends BaseActivity {
         setUpActivityComponents();
     }
 
-    @Override
     protected int getResourceLayout() {
         return R.layout.activity_dashboard;
     }
 
-    @Override
     protected void setUpActivityComponents() {
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
@@ -85,6 +84,12 @@ public class DashboardActivity extends BaseActivity {
                 .setOnNavigationItemSelectedListener(
                         mOnNavigationItemSelectedListener);
         navigation.inflateMenu(R.menu.navigation);
+
+        if (getIntent() != null) {
+            if (getIntent().hasExtra(LoginActivity.LOGIN_BOOLEAN_EXTRA)) {
+                isLogin = getIntent().getBooleanExtra(LoginActivity.LOGIN_BOOLEAN_EXTRA, false);
+            }
+        }
 
         if (isLogin) {
             navigation.getMenu().removeItem(R.id.navigation_welcome);
@@ -103,4 +108,9 @@ public class DashboardActivity extends BaseActivity {
         transaction.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }
