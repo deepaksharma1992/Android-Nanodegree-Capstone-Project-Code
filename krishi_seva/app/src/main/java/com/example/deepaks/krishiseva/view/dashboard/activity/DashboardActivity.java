@@ -26,7 +26,7 @@ public class DashboardActivity extends AppCompatActivity {
     Toolbar mToolbar;
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
-    boolean isLogin;
+    private boolean isLogin;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -68,9 +68,25 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (getIntent() != null) {
+            if (getIntent().hasExtra(LoginActivity.LOGIN_BOOLEAN_EXTRA)) {
+                isLogin = getIntent().getBooleanExtra(LoginActivity.LOGIN_BOOLEAN_EXTRA, false);
+            }
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(getResourceLayout());
         setUpActivityComponents();
+
+        if (savedInstanceState != null) {
+            if (savedInstanceState.getBoolean("check")) {
+                if (isLogin) {
+                    navigation.setSelectedItemId(R.id.navigation_vendors);
+                } else {
+                    navigation.setSelectedItemId(R.id.navigation_welcome);
+                }
+            }
+        }
     }
 
     private int getResourceLayout() {
@@ -85,11 +101,6 @@ public class DashboardActivity extends AppCompatActivity {
                         mOnNavigationItemSelectedListener);
         navigation.inflateMenu(R.menu.navigation);
 
-        if (getIntent() != null) {
-            if (getIntent().hasExtra(LoginActivity.LOGIN_BOOLEAN_EXTRA)) {
-                isLogin = getIntent().getBooleanExtra(LoginActivity.LOGIN_BOOLEAN_EXTRA, false);
-            }
-        }
 
         if (isLogin) {
             navigation.getMenu().removeItem(R.id.navigation_welcome);
@@ -101,10 +112,8 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment) {
-        // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -112,5 +121,11 @@ public class DashboardActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("check", true);
     }
 }

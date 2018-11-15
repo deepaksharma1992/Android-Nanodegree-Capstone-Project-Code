@@ -70,13 +70,19 @@ public class ElectricityFragment extends Fragment {
                 mLoadingProgress.setVisibility(View.INVISIBLE);
                 mTvNoElectricityText.setVisibility(View.INVISIBLE);
                 PreferenceUtils.setString(ElectricityStatusWidget.POWER_WIDGET_DATA_KEY, electricityBuilder.toString());
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
-                Bundle bundle = new Bundle();
-                int appWidgetId = bundle.getInt(
-                        AppWidgetManager.EXTRA_APPWIDGET_ID,
-                        AppWidgetManager.INVALID_APPWIDGET_ID);
-                ElectricityStatusWidget.updateAppWidget(getActivity(), appWidgetManager, appWidgetId
-                        , electricityBuilder.toString());
+
+                try {
+                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
+                    Bundle bundle = new Bundle();
+                    int appWidgetId = bundle.getInt(
+                            AppWidgetManager.EXTRA_APPWIDGET_ID,
+                            AppWidgetManager.INVALID_APPWIDGET_ID);
+                    ElectricityStatusWidget.updateAppWidget(getActivity(), appWidgetManager, appWidgetId
+                            , electricityBuilder.toString());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -105,4 +111,5 @@ public class ElectricityFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference(DatabaseConstant.ELECTRICITY_TAG);
         mElectricityList = new ArrayList<>();
     }
+
 }

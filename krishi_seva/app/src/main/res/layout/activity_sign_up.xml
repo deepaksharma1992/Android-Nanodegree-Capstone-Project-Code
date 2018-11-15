@@ -12,7 +12,9 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
-        <ImageView style="@style/LoginImageStyle" />
+        <ImageView
+            style="@style/LoginImageStyle"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:layout_width="match_parent"
@@ -97,6 +99,7 @@
                 android:layout_width="@dimen/location_param"
                 android:layout_height="@dimen/location_param"
                 android:layout_gravity="center"
+                android:contentDescription="@string/search_location"
                 android:src="@mipmap/location_icon" />
         </LinearLayout>
 

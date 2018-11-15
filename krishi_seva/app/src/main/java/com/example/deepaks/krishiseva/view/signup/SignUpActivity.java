@@ -262,11 +262,11 @@ public class SignUpActivity extends AppCompatActivity implements SignUpListener,
     @Override
     public void onLocationChanged(Location location) {
         if (location != null) {
-            mLocationString = LocationUtils.getAddress(this, mLocation.getLatitude()
-                    , mLocation.getLongitude());
+            mLocationString = LocationUtils.getAddress(this, location.getLatitude()
+                    , location.getLongitude());
             mLocationAddressText.setText(mLocationString = LocationUtils.getAddress(this
-                    , mLocation.getLatitude()
-                    , mLocation.getLongitude()));
+                    , location.getLatitude()
+                    , location.getLongitude()));
         } else {
             MessageUtils.showToastMessage(this, getString(R.string.failed_to_detect_location));
         }

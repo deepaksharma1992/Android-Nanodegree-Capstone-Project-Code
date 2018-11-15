@@ -13,6 +13,7 @@
         <ImageView
             android:id="@+id/iv_news_image"
             android:layout_width="match_parent"
+            android:contentDescription="@string/news_label"
             android:scaleType="fitXY"
             android:layout_height="@dimen/news_image_height" />
 

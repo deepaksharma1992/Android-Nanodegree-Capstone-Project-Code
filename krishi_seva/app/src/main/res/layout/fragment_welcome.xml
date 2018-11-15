@@ -13,7 +13,8 @@
 
         <ImageView
             style="@style/LoginImageStyle"
-            android:layout_marginBottom="@dimen/_10dp" />
+            android:layout_marginBottom="@dimen/_10dp"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:layout_width="match_parent"

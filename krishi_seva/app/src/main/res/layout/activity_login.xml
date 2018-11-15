@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView style="@style/LoginImageStyle" />
+        <ImageView style="@style/LoginImageStyle"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:layout_width="match_parent"
